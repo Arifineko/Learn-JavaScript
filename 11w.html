@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function findIndex(array, word) {
+
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if(element === word) {
+                    return 1
+                }
+            }
+
+            return -1
+        }
+
+        function unique(array) {
+
+            const result = [0, 'green', ]
+            
+            
+            for(let i = 0; i < array.length; i++) {
+                const word = array [i]
+                if(findIndex(result, word) === -1) {
+                    //jalananin fungsi findindex dulu
+                    //setelah jalan baru di compare
+                    result.push(word)
+                }
+            }
+
+
+            return result
+        }
+
+        console.log(unique(['green', 'red', 'blue', 'red']))
+
+
+        // console.log(findIndex(['green', 'red', 'blue', 'red'], 'red'));
+        // console.log(findIndex(['green', 'red', 'blue', 'red'], 'yellow'));
+    </script>
+</body>
+</html>

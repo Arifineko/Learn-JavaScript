@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function findIndex(array, word) {
+            
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if(element === word) {
+                    return 1
+                }
+
+                //return -1 artinya gasama kalo gasama kita masukan nilai nya ke array baru
+               
+            }
+            
+            return -1
+        }
+
+
+        function unique(array) {
+            const result = []
+
+            for (let index = 0; index < array.length; index++) {
+                const word = array[index];
+                
+                if(findIndex(result, word) === -1) {
+                    result.push(word)
+                }
+            }
+
+            return result
+        }
+
+
+        console.log(unique(['green', 'green', 'red', 'blue']))
+    </script>
+</body>
+</html>
