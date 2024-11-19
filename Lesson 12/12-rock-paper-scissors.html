@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button class="js-rock">Rock</button>
+        <button class="js-paper">Paper</button>
+        <button class="js-scissors">Scissors</button>
+        <button class="js-button-auto-play">Auto Play</button>
+    </div>
+    <div>
+        <p class="js-player-move">You:</p>
+        <p class="js-computer-move">Computer:</p>
+        <p class="js-result"></p>
+    </div>
+    <script>
+        const rockButton = document.querySelector('.js-rock');
+        const paperButton = document.querySelector('.js-paper');
+        const scissorsButton = document.querySelector('.js-scissors');
+        const autoPlayButton = document.querySelector('.js-button-auto-play')
+
+        const player = document.querySelector('.js-player-move')
+        const computer= document.querySelector('.js-computer-move')
+        const resultMove = document.querySelector('.js-result')
+
+
+
+        let isAutoPlaying = false;
+        let intervalId;
+
+        autoPlayButton.addEventListener('click', () => {
+            if(!isAutoPlaying) {   
+                intervalId = setInterval(() => {
+                    const player = computerMove()
+                    const computer = computerMove()
+        
+                    resultGame(player, computer)
+                    }, 1000)
+                isAutoPlaying = true
+            } else {
+                clearInterval(intervalId)
+                isAutoPlaying = false;
+            }
+        })
+
+        const computerMove = () => {
+            let result;
+
+            const randomNumber = Math.random()
+
+            if (randomNumber >= 0 && randomNumber < 1 / 3) {
+                result = 'rock';
+            } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+                result = 'paper';
+            } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+                result = 'scissors';
+            }
+
+            return result;
+        }
+
+
+        rockButton.addEventListener('click', () => {
+           const move =  computerMove()
+            resultGame('rock', move)
+        })
+
+        paperButton.addEventListener('click', () => {
+           const move =  computerMove()
+            resultGame('paper', move)
+        })
+
+        scissorsButton.addEventListener('click', () => {
+           const move =  computerMove()
+            resultGame('scissors', move)
+        })
+
+        const resultGame = (playerMove, computerMove) => {
+            let result;
+            if(playerMove === 'rock') {
+
+                if(computerMove === 'rock') {
+                    result =  'Tie'
+                } else if(computerMove === 'scissors') {
+                    result =  'You win'
+                } else {
+                    result =  'You Lose'
+                }
+            }else if(playerMove === 'paper') {
+                if(computerMove === 'paper') {
+                    result =  'Tie'
+                } else if(computerMove === 'scissors') {
+                    result =  'You Lose'
+                } else {
+                    result =  'You Win'
+                }
+            }else if(playerMove === 'scissors') {
+                if(computerMove === 'scissors') {
+                    result = 'Tie'
+                } else if(computerMove === 'rock') {
+                    result = 'You Lose'
+                } else {
+                    result = 'You Win'
+                }
+            }
+
+            player.innerHTML = `You: ${playerMove}`;
+            computer.innerHTML = `Computer: ${computerMove}`;
+            resultMove.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
