@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="js-button-add">Add</button>
+    <p class="js-message"></p>
+    <script>
+        const buttonEl = document.querySelector('.js-button-add');
+        const messageEl = document.querySelector('.js-message')
+
+        let timeoutId;
+        buttonEl.addEventListener('click', () => {
+            messageEl.innerHTML = 'Added';
+
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                messageEl.innerHTML = '';
+            }, 2000);
+
+        })
+    </script>
+</body>
+</html>
