@@ -68,16 +68,34 @@
         console.log('next line 2')
         */
 
-        [   'wash dishes',
-            'play football',
-            'watch movies'
-        ].forEach((value, index) => {
-            if(value === 'wash dishes') {
-                return
-            }
+        // [   'wash dishes',
+        //     'play football',
+        //     'watch movies'
+        // ].forEach((value, index) => {
+        //     if(value === 'wash dishes') {
+        //         return
+        //     }
 
-            console.log(value)
-        })
+        //     console.log(value)
+        // })
+
+
+        // const oneParam = param => {
+        //     console.log(param)
+        // }
+
+        // oneParam(2)
+
+        const array = [1, -3, 5];
+
+        console.log(array.filter((value, index) => {
+            return value >= 0;
+        }));
+
+
+        console.log([1, 1, 3].map((value) => {
+            return value * 2;
+        }))
 
 
     </script>

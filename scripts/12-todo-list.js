@@ -35,10 +35,17 @@ function renderTodoList() {
         todoListHTML = `
         <p>${name}</p>
         <p>${dueDate}</p>
-        <button class="remove-button" onclick="
-            todoList.splice(${index}, 1);
-            renderTodoList()
-        ">Delete</button>`
+        <button class="remove-button js-delete-button">Delete</button>`
+
         todoEl.innerHTML += todoListHTML;
     })
+
+
+    document.querySelectorAll('.js-delete-button').forEach((button, index) => {
+        button.addEventListener('click', () => {
+            todoList.splice(index, 1);
+            renderTodoList()
+        })
+    })
+
 }

@@ -27,24 +27,40 @@
         const computer= document.querySelector('.js-computer-move')
         const resultMove = document.querySelector('.js-result')
 
-
-
         let isAutoPlaying = false;
         let intervalId;
 
-        autoPlayButton.addEventListener('click', () => {
-            if(!isAutoPlaying) {   
-                intervalId = setInterval(() => {
-                    const player = computerMove()
-                    const computer = computerMove()
-        
-                    resultGame(player, computer)
-                    }, 1000)
-                isAutoPlaying = true
-            } else {
-                clearInterval(intervalId)
-                isAutoPlaying = false;
+
+        document.body.addEventListener('keydown', (event) => {
+            const {key} = event;
+
+            if(key === 'r') {
+                const move =  computerMove()
+                resultGame('rock', move)
+            } else if (key === 'a') {
+                autoPlay()
             }
+        })
+
+        function autoPlay () {
+                if(!isAutoPlaying) {   
+                    intervalId = setInterval(() => {
+                        const player = computerMove()
+                        const computer = computerMove()
+            
+                        resultGame(player, computer)
+                        }, 1000)
+                    autoPlayButton.innerHTML = 'Stop Playing'
+                    isAutoPlaying = true
+                } else {
+                    clearInterval(intervalId)
+                    autoPlayButton.innerHTML = 'Auto play'
+                    isAutoPlaying = false;
+                }
+            }
+
+        autoPlayButton.addEventListener('click', () => {
+            autoPlay()
         })
 
         const computerMove = () => {
